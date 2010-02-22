@@ -1,0 +1,25 @@
+kerberos:
+  _attributes:                    { package: plugins.stKerberosPlugin.lib.model }
+
+  #used to log auth information
+  netid_auth_log: 
+    _attributes:                  { idMethod: native, phpName: stKerberosAuthLog }
+    id:                           { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    timestamp:                    { type: TIMESTAMP, required: true }
+    net_id:                       { type: VARCHAR, size: 10, required: true }
+    message:                      { type: LONGVARCHAR, required: true }
+    return_value:                 { type: INTEGER, required: true, default: 0 }
+    retval_source:                { type: CHAR, required: true, defaultValue: 'php' }
+    elapsed_time:                 { type: FLOAT, required: true, default: 0 }
+    _indexes: 
+      retval_source: 
+        - retval_source
+      net_id: 
+        - net_id
+      return_value: 
+        - return_value
+      timestamp: 
+        - timestamp
+      elapsed_time: 
+        - elapsed_time
+
